@@ -1,3 +1,5 @@
+// errorBoundary.js - Mock React error boundary.
+// This component catches errors in the app and displays a fallback UI.
 import React from "react";
 
 class ErrorBoundary extends React.Component {
