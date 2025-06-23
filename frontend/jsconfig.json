@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+      "baseUrl": "src", // allows absolute imports from src/
+      "paths": {
+        "@components/*": ["components/*"],
+        "@utils/*": ["utils/*"]
+      },
+      "jsx": "react"
+    },
+    "include": ["src"]
+  }
