@@ -9,7 +9,8 @@ function App() {
   useEffect(() => {
     fetch(`/feedback?rating=${rating}`)
       .then(res => res.json())
-      .then(data => setFeedback(data));
+      .then(data => setFeedback(data))
+      .catch(err => console.error("Error fetching feedback:", err));
   }, [rating]);
 
   return (
