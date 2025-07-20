@@ -1,6 +1,5 @@
-
 // App.jsx - Mock React frontend (with issues)
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 function App() {
   const [feedback, setFeedback] = useState([]);
@@ -8,9 +7,9 @@ function App() {
 
   useEffect(() => {
     fetch(`/feedback?rating=${rating}`)
-      .then(res => res.json())
-      .then(data => setFeedback(data))
-      .catch(err => console.error("Error fetching feedback:", err));
+      .then((res) => res.json())
+      .then((data) => setFeedback(data))
+      .catch((err) => console.error("Error fetching feedback:", err));
   }, [rating]);
 
   return (
@@ -23,7 +22,9 @@ function App() {
       </select>
       <ul>
         {feedback.map((f, i) => (
-          <li key={i}>{f.message} - {f.rating} stars</li>
+          <li key={i}>
+            {f.message} - {f.rating} stars
+          </li>
         ))}
       </ul>
     </div>
