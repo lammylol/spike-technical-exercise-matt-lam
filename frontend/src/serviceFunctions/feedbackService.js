@@ -3,7 +3,11 @@
 const API_BASE_URL = "/feedback";
 
 export const feedbackService = {
-  // Get feedback with optional rating filter
+  /**
+   * Get feedback with optional rating filter
+   * @param {number|null} rating - Optional rating filter (1-5)
+   * @returns {Promise<Feedback[]>} Array of feedback objects
+   */
   getFeedback: async (rating = null) => {
     // Validate rating if provided
     if (rating !== null && (rating < 1 || rating > 5)) {
@@ -22,7 +26,11 @@ export const feedbackService = {
     return response.json();
   },
 
-  // Submit new feedback
+  /**
+   * Submit new feedback
+   * @param {Feedback} feedbackData - The feedback object to submit
+   * @returns {Promise<Feedback>} The submitted feedback object
+   */
   submitFeedback: async (feedbackData) => {
     // Typeguard for feedbackData.
     // This is a simple check to ensure the feedbackData is valid. Could enhance with more robust type checking.

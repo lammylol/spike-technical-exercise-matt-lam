@@ -4,13 +4,24 @@
 import React, { useState } from "react";
 import { feedbackService } from "./serviceFunctions/feedbackService";
 import "./AddFeedbackPage.css";
+import { createFeedback } from "./feedbackTypes/feedbackTypes";
 
+/**
+ * AddFeedbackPage component for adding new feedback
+ * @param {Object} props - Component props
+ * @param {Function} props.onClose - Callback function when modal is closed
+ * @param {Function} props.onFeedbackAdded - Callback function when feedback is successfully added
+ */
 function AddFeedbackPage({ onClose, onFeedbackAdded }) {
   const [rating, setRating] = useState(5);
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
 
+  /**
+   * Handles form submission and creates a Feedback object
+   * @param {Event} e - Form submission event
+   */
   const handleSubmit = async (e) => {
     // Prevent the default form submission behavior.
     e.preventDefault();
@@ -20,10 +31,8 @@ function AddFeedbackPage({ onClose, onFeedbackAdded }) {
     setError("");
 
     try {
-      const feedbackData = {
-        rating: parseInt(rating),
-        message: message.trim(),
-      };
+      // Use the createFeedback utility function to ensure type safety
+      const feedbackData = createFeedback(parseInt(rating), message.trim());
 
       await feedbackService.submitFeedback(feedbackData);
 
