@@ -57,26 +57,19 @@ function App() {
     const getAISuggestions = () => {
         const suggestions = [
             {
-                title: "Response Time Optimization",
-                description: "Based on recent feedback, customers expect faster response times. Consider implementing automated acknowledgments.",
+                title: "Weather Alert Supply Delivery Timer ⛈️",
+                description: "Send push notifications to supply delivery trucks when rain is coming, so they can plan their deliveries better.",
                 impact: "High",
-                confidence: 87,
-                category: "Customer Service"
+                confidence: 95,
+                category: "Supply Delivery"
             },
             {
-                title: "Mobile Experience Enhancement",
-                description: "30% of negative reviews mention mobile interface issues. Prioritize mobile UX improvements.",
+                title: "Bean Quality Selfie 📸",
+                description: "Let farmers take photos of their coffee cherries and get instant quality assessment tips from AI.",
                 impact: "Medium",
-                confidence: 92,
-                category: "User Experience"
+                confidence: 88,
+                category: "Quality Control"
             },
-            {
-                title: "Feature Request: Dark Mode",
-                description: "Multiple users have requested dark mode. This could improve user satisfaction by 15%.",
-                impact: "Low",
-                confidence: 78,
-                category: "Product Enhancement"
-            }
         ];
 
         // Return the highest confidence suggestion
