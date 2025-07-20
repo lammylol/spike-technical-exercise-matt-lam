@@ -35,12 +35,14 @@ def init_db():
     conn.close()
 
 
+# Returns a list of feedback objects structured as {id: int, message: string, rating: int, created_at: string}
 @app.route("/feedback", methods=["GET"])
 def get_feedback():
     try:
         logger.info("GET /feedback - Fetching feedback")
         init_db()
         conn = sqlite3.connect("feedback.db")
+        conn.row_factory = sqlite3.Row  # used to return dictionaries instead of tuples
         cursor = conn.cursor()
         rating = request.args.get("rating")
         sort = request.args.get("sort", "desc")
@@ -48,11 +50,16 @@ def get_feedback():
 
         if rating:
             logger.info(f"Filtering by rating: {rating}")
-            query += f" WHERE rating = {rating}"  # <-- SQL injection risk
-        query += f" ORDER BY created_at {sort}"
+            query = (
+                f"SELECT * FROM feedback WHERE rating = ? ORDER BY created_at {sort}"
+            )
+            cursor.execute(query, (rating,))
+        else:
+            query = f"SELECT * FROM feedback ORDER BY created_at {sort}"
+            cursor.execute(query)
 
-        logger.info(f"Executing query: {query}")
-        feedback = cursor.execute(query).fetchall()
+        logger.info(f"Executing query with parameters")
+        feedback = [dict(row) for row in cursor.fetchall()]
         logger.info(f"Found {len(feedback)} feedback entries")
         conn.close()
         return jsonify(feedback)
