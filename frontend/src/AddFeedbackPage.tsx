@@ -69,24 +69,35 @@ function AddFeedbackPage({ onClose, onFeedbackAdded }: AddFeedbackPageProps) {
         setMessage(e.target.value);
     };
 
+    const renderStars = (rating: number) => {
+        return "★".repeat(rating) + "☆".repeat(5 - rating);
+    };
+
     return (
         <div className="modal-overlay" onClick={handleClose}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <div className="modal-header">
-                    <h2>Add Feedback</h2>
-                    <button className="close-button" onClick={handleClose}>
-                        ×
-                    </button>
+                    <div className="modal-header-content">
+                        <h2 className="modal-title">
+                            Share Your Feedback
+                        </h2>
+                        <button className="close-button" onClick={handleClose}>
+                            ×
+                        </button>
+                    </div>
                 </div>
 
                 <form onSubmit={handleSubmit} className="feedback-form">
                     <div className="form-group">
-                        <label htmlFor="rating">Rating:</label>
+                        <label htmlFor="rating" className="form-label">
+                            Rating:
+                        </label>
                         <select
                             id="rating"
                             value={rating}
                             onChange={handleRatingChange}
                             required
+                            className="form-select"
                         >
                             <option value="5">5 Stars</option>
                             <option value="4">4 Stars</option>
@@ -94,21 +105,31 @@ function AddFeedbackPage({ onClose, onFeedbackAdded }: AddFeedbackPageProps) {
                             <option value="2">2 Stars</option>
                             <option value="1">1 Star</option>
                         </select>
+                        <div className="stars-preview">
+                            {renderStars(rating)}
+                        </div>
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="message">Message:</label>
+                        <label htmlFor="message" className="form-label">
+                            Message:
+                        </label>
                         <textarea
                             id="message"
                             value={message}
                             onChange={handleMessageChange}
                             placeholder="Share your feedback..."
                             rows={4}
-                            required={false} // optional field
+                            required={false}
+                            className="form-textarea"
                         />
                     </div>
 
-                    {error && <div className="error-message">{error}</div>}
+                    {error && (
+                        <div className="error-message">
+                            {error}
+                        </div>
+                    )}
 
                     <div className="form-actions">
                         <button
