@@ -146,7 +146,7 @@ function App() {
                         onClick={() => setShowAddFeedback(true)}
                         className="add-feedback-btn"
                     >
-                        ✨ Add Feedback
+                        Add Feedback
                     </button>
 
                     <select
