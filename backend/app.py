@@ -1,8 +1,15 @@
 # app.py - Mock Flask backend (with bugs)
 from flask import Flask, request, jsonify
 import sqlite3
+import logging
 
 app = Flask(__name__)
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
 
 
 def init_db():
@@ -27,6 +34,7 @@ def init_db():
 @app.route("/feedback", methods=["GET"])
 def get_feedback():
     try:
+        logger.info("GET /feedback - Fetching feedback")
         init_db()
         conn = sqlite3.connect("feedback.db")
         cursor = conn.cursor()
@@ -35,20 +43,28 @@ def get_feedback():
         query = "SELECT * FROM feedback"
 
         if rating:
+            logger.info(f"Filtering by rating: {rating}")
             query += f" WHERE rating = {rating}"  # <-- SQL injection risk
         query += f" ORDER BY created_at {sort}"
+
+        logger.info(f"Executing query: {query}")
         feedback = cursor.execute(query).fetchall()
+        logger.info(f"Found {len(feedback)} feedback entries")
         conn.close()
         return jsonify(feedback)
     except Exception as e:
+        logger.error(f"Error fetching feedback: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
 
 @app.route("/feedback", methods=["POST"])
 def post_feedback():
     try:
+        logger.info("POST /feedback - Submitting new feedback")
         init_db()
         data = request.get_json()
+        logger.info(f"Received feedback data: {data}")
+
         conn = sqlite3.connect("feedback.db")
         cursor = conn.cursor()
         cursor.execute(
@@ -56,9 +72,13 @@ def post_feedback():
             (data["message"], data["rating"]),
         )
         conn.commit()
+        logger.info(
+            f"Successfully saved feedback: rating={data['rating']}, message='{data['message'][:50]}...'"
+        )
         conn.close()
         return jsonify({"status": "ok"})
     except Exception as e:
+        logger.error(f"Error submitting feedback: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
 
