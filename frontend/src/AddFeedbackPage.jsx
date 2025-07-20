@@ -1,3 +1,6 @@
+// AddFeedbackPage.jsx is a modal for adding feedback.
+// It is used to add feedback to the database from the client.
+
 import React, { useState } from "react";
 import { feedbackService } from "./serviceFunctions/feedbackService";
 import "./AddFeedbackPage.css";
@@ -9,7 +12,10 @@ function AddFeedbackPage({ onClose, onFeedbackAdded }) {
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
+    // Prevent the default form submission behavior.
     e.preventDefault();
+
+    // Set the submitting state to true and clear any previous errors.
     setIsSubmitting(true);
     setError("");
 
@@ -25,12 +31,11 @@ function AddFeedbackPage({ onClose, onFeedbackAdded }) {
       setRating(5);
       setMessage("");
 
-      // Notify parent component
+      // Notify parent component when feedback is added.
       if (onFeedbackAdded) {
         onFeedbackAdded();
       }
 
-      // Close modal
       if (onClose) {
         onClose();
       }
