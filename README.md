@@ -1,4 +1,3 @@
-
 # Full-Stack Debug & Feature Test
 
 Welcome! This is a full-stack take-home test. The app is partially functional and contains a few bugs. Your task:
@@ -11,6 +10,7 @@ Welcome! This is a full-stack take-home test. The app is partially functional an
 ## How to Run
 
 ### Backend
+
 ```bash
 cd backend
 python3 -m venv venv
@@ -20,14 +20,37 @@ python app.py
 ```
 
 ### Frontend
+
 ```bash
 cd frontend
 npm install
 npm start
 ```
 
+## Testing
+
+### Frontend Tests
+
+The frontend includes comprehensive test coverage for the feedback service functions.
+
+#### Running Tests
+
+```bash
+cd frontend
+yarn test
+```
+
+#### Test Coverage
+
+- **feedbackService.test.js**: Tests for the feedback API service functions
+  - `getFeedback()`: Tests fetching feedback with and without rating filters
+  - `submitFeedback()`: Tests submitting new feedback with validation
+  - Error handling for invalid ratings, network errors, and API failures
+
 ## Submission
+
 Push your changes to GitHub and send us the link. Include notes in a PR or README on:
+
 - Bugs you fixed
 - Design decisions you made
 - Any improvements/refactors
