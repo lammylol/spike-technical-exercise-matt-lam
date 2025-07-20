@@ -88,7 +88,7 @@ function AddFeedbackPage({ onClose, onFeedbackAdded }) {
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Share your feedback..."
               rows="4"
-              required
+              required={false} // optional field
             />
           </div>
 
