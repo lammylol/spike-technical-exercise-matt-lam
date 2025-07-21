@@ -15,16 +15,24 @@ Welcome! This is a full-stack take-home test. The app is partially functional an
 cd backend
 python3 -m venv venv
 source venv/bin/activate
-pip install flask
+pip install -r requirements.txt
 python app.py
+```
+
+### Reset - If encountering venv errors
+```bash
+deactivate  # Leave the virtual environment if active
+rm -rf venv
+# then run the ### Backend ones again.
 ```
 
 ### Frontend
 
 ```bash
 cd frontend
-npm install
-npm start
+# ensure no package-lock.json exists, only package.json. If not, remove package-lock.json.
+yarn install
+yarn start
 ```
 
 ## Testing

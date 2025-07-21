@@ -3,6 +3,8 @@
 export interface Feedback {
     rating: number;
     message: string;
+    id?: number;
+    created_at?: string;
 }
 
 /**

@@ -1,0 +1,64 @@
+/* colors.css - CSS custom properties for the color scheme */
+
+:root {
+  /* Primary colors */
+  --primary-main: #007bff;
+  --primary-light: #0056b3;
+  --primary-dark: #004085;
+  --primary-hover: #0056b3;
+
+  /* Secondary colors */
+  --secondary-main: #6c757d;
+  --secondary-light: #495057;
+  --secondary-dark: #343a40;
+  --secondary-hover: #495057;
+
+  /* Background colors */
+  --background-primary: #ffffff;
+  --background-secondary: #f8f9fa;
+  --background-overlay: rgba(0, 0, 0, 0.5);
+
+  /* Text colors */
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --text-light: #999999;
+  --text-white: #ffffff;
+
+  /* Border colors */
+  --border-light: #e1e5e9;
+  --border-medium: #dee2e6;
+  --border-dark: #ddd;
+
+  /* Status colors */
+  --status-success: #28a745;
+  --status-error: #dc3545;
+  --status-warning: #ffc107;
+  --status-info: #17a2b8;
+
+  /* Error colors */
+  --error-background: #f8d7da;
+  --error-text: #721c24;
+  --error-border: #f5c6cb;
+
+  /* Button colors */
+  --button-primary-background: #007bff;
+  --button-primary-text: #ffffff;
+  --button-primary-hover: #0056b3;
+  --button-primary-disabled: rgba(0, 123, 255, 0.6);
+
+  --button-secondary-background: #f8f9fa;
+  --button-secondary-text: #6c757d;
+  --button-secondary-border: #dee2e6;
+  --button-secondary-hover: #e9ecef;
+  --button-secondary-hover-text: #495057;
+  --button-secondary-disabled: rgba(108, 117, 125, 0.6);
+
+  /* Form colors */
+  --form-input-border: #ddd;
+  --form-input-focus: #007bff;
+  --form-input-focus-shadow: rgba(0, 123, 255, 0.1);
+
+  /* Shadow colors */
+  --shadow-light: rgba(0, 0, 0, 0.15);
+  --shadow-medium: rgba(0, 0, 0, 0.1);
+}

@@ -1,2 +1,4 @@
 .vscode/settings.json
 backend/feedback.db
+*.db
+venv/
